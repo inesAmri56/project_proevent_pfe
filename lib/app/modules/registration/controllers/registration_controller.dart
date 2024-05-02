@@ -1,33 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-
 class RegistrationController extends GetxController {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
-  final TextEditingController idController = TextEditingController();
+  var email = ''.obs;
+  var password = ''.obs;
+  var username = ''.obs; // Ajoutez cette ligne pour le champ de saisie du nom d'utilisateur
+  late TextEditingController passwordController = TextEditingController();
+  var isPasswordVisible = false.obs;
 
-  RxString emailError = ''.obs;
-  RxString passwordError = ''.obs;
-
-  final count = 0.obs;
-
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
   @override
   void onInit() {
     super.onInit();
+    passwordController = TextEditingController();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void login() {
+    // Logique de connexion ici
+    // Utilisez les valeurs de email et password
+  }
+
+  void register() {
+    // Logique d'inscription ici
+    // Utilisez les valeurs de email, password et username
   }
 
   @override
   void onClose() {
     super.onClose();
-  }
+    email.close();
+    password.close();
+    username.close(); // Fermez également le contrôleur pour le champ de saisie du nom d'utilisateur
+   isPasswordVisible.close();
 
-  void increment() => count.value++;
+  }
 }

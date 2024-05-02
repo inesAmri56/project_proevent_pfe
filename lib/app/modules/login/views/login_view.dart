@@ -82,7 +82,7 @@ class LoginView extends GetView<LoginController> {
                           GestureDetector(
                             onTap: () {
                               //Get.toNamed('/signup');
-                              Get.to(RegistrationView());
+                            //  Get.to(RegistrationView());
                             },
                             child: Text(" Sign up", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18,
                               ),
