@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:proevent_project/app/modules/chat_msg_item/views/chat_msg_item_view.dart';
 
+import '../../ChatMsgItem/views/chat_msg_item_view.dart';
 import '../controllers/chat_screen_controller.dart';
 
 class ChatScreenView extends GetView<ChatScreenController> {

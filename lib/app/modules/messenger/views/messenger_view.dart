@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:proevent_project/app/modules/chat_screen/views/chat_screen_view.dart';
 
+import 'package:get/get.dart';
+
+import '../../ChatScreen/views/chat_screen_view.dart';
 import '../controllers/messenger_controller.dart';
 
 class MessengerView extends GetView<MessengerController> {

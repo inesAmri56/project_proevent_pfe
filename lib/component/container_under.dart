@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:proevent_project/component/text_utils.dart';
+import 'package:proevent/component/text_utils.dart';
+
 
 
 class ContainerUnder extends StatelessWidget {

@@ -1,27 +1,31 @@
 import 'package:get/get.dart';
-import 'package:proevent_project/app/modules/registration/views/registration_view.dart';
 
 import '../modules/BottomNavigationBar/bindings/bottom_navigation_bar_binding.dart';
 import '../modules/BottomNavigationBar/views/bottom_navigation_bar_view.dart';
-import '../modules/Events/bindings/events_binding.dart';
-import '../modules/Events/views/events_view.dart';
+import '../modules/ChatMsgItem/bindings/chat_msg_item_binding.dart';
+import '../modules/ChatMsgItem/views/chat_msg_item_view.dart';
+import '../modules/ChatScreen/bindings/chat_screen_binding.dart';
+import '../modules/ChatScreen/views/chat_screen_view.dart';
 import '../modules/Home/bindings/home_binding.dart';
 import '../modules/Home/views/home_view.dart';
+import '../modules/Messenger/bindings/messenger_binding.dart';
+import '../modules/Messenger/views/messenger_view.dart';
 import '../modules/MyHeaderDrawer/bindings/my_header_drawer_binding.dart';
 import '../modules/MyHeaderDrawer/views/my_header_drawer_view.dart';
 import '../modules/Notification/bindings/notification_binding.dart';
 import '../modules/Notification/views/notification_view.dart';
-import '../modules/chat_msg_item/bindings/chat_msg_item_binding.dart';
-import '../modules/chat_msg_item/views/chat_msg_item_view.dart';
-import '../modules/chat_screen/bindings/chat_screen_binding.dart';
-import '../modules/chat_screen/views/chat_screen_view.dart';
-import '../modules/dashboard/bindings/dashboard_binding.dart';
-import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/SendFeedback/bindings/send_feedback_binding.dart';
+import '../modules/SendFeedback/views/send_feedback_view.dart';
+import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
+import '../modules/SplashScreen/views/splash_screen_view.dart';
+import '../modules/events/bindings/events_binding.dart';
+import '../modules/events/views/events_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/messenger/bindings/messenger_binding.dart';
-import '../modules/messenger/views/messenger_view.dart';
+import '../modules/pendingAccounts/bindings/pending_accounts_binding.dart';
+import '../modules/pendingAccounts/views/pending_accounts_view.dart';
 import '../modules/registration/bindings/registration_binding.dart';
+import '../modules/registration/views/registration_view.dart';
 import '../modules/settingpassword/bindings/settingpassword_binding.dart';
 import '../modules/settingpassword/views/settingpassword_view.dart';
 
@@ -30,7 +34,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.REGISTRATION;
+  static const INITIAL = Routes.PENDING_ACCOUNTS;
 
   static final routes = [
     GetPage(
@@ -50,7 +54,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -74,24 +78,34 @@ class AppPages {
       binding: NotificationBinding(),
     ),
     GetPage(
-      name: _Paths.MESSENGER,
-      page: () => MessengerView(),
-      binding: MessengerBinding(),
+      name: _Paths.SEND_FEEDBACK,
+      page: () => SendFeedbackView(),
+      binding: SendFeedbackBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH_SCREEN,
+      page: () => SplashScreenView(),
+      binding: SplashScreenBinding(),
     ),
     GetPage(
       name: _Paths.CHAT_SCREEN,
       page: () => ChatScreenView(),
       binding: ChatScreenBinding(),
     ),
-    //   GetPage(
-    //     name: _Paths.CHAT_MSG_ITEM,
-    //     page: () => ChatMsgItemView(),
-    //     binding: ChatMsgItemBinding(),
-    //   ),
+    // GetPage(
+    //   name: _Paths.CHAT_MSG_ITEM,
+    //   page: () => ChatMsgItemView(),
+    //   binding: ChatMsgItemBinding(),
+    // ),
     GetPage(
-      name: _Paths.DASHBOARD,
-      page: () =>  DashboardView(),
-      binding: DashboardBinding(),
+      name: _Paths.MESSENGER,
+      page: () => MessengerView(),
+      binding: MessengerBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENDING_ACCOUNTS,
+      page: () => PendingAccountsView(),
+      binding: PendingAccountsBinding(),
     ),
   ];
 }

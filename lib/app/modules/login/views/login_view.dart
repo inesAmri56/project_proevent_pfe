@@ -1,103 +1,178 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:proevent_project/app/modules/BottomNavigationBar/views/bottom_navigation_bar_view.dart';
-import 'package:proevent_project/app/modules/registration/views/registration_view.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../../../component/authtextfromfield.dart';
+import '../../BottomNavigationBar/views/bottom_navigation_bar_view.dart';
+import '../../registration/views/registration_view.dart';
 import '../controllers/login_controller.dart';
 
-
 class LoginView extends GetView<LoginController> {
-  LoginView({Key? key}) : super(key: key);
-  final LoginController controller = Get.put(LoginController(), permanent: true);
-  final _formKey = GlobalKey<FormState>();
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-                child: Center(
-                  child: Column(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(25),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Lottie.asset(
+                    'assets/animation/login.json',
+                    height: 300,
+                    repeat: true,
+                    reverse: true,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 50),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Obx(
+                            () => AuthTextFromField(
+                          controller: emailController,
+                          obscureText: !controller.isPasswordHidden.value,
+                          validator: controller.validateEmail,
+                          prefixIcon: Icon(
+                            CupertinoIcons.mail,
+                            color: Colors.purple,
+                            size: 30,
+                          ),
+                          hintText: "E-mail",
+                          obscuredText: false,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Obx(
+                            () => AuthTextFromField(
+                          controller: passwordController,
+                          obscureText: controller.isPasswordHidden.value,
+                          validator: controller.validatePassword,
+                          prefixIcon: Icon(
+                            CupertinoIcons.lock,
+                            color: Colors.purple,
+                            size: 30,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              controller.isPasswordHidden.value
+                                  ? CupertinoIcons.eye_slash
+                                  : CupertinoIcons.eye,
+                              color: Colors.black,
+                            ),
+                            onPressed: controller.togglePasswordVisibility,
+                          ),
+                          hintText: 'Password',
+                          obscuredText: true,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 80),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                      getColor(Colors.deepPurple, Colors.white),
+                      foregroundColor:
+                      getColor(Colors.white, Colors.deepPurple),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Get.to(BottomNavigationBarView());
+                      }
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 40),
-                      Text("Get Started !",
-                        style: TextStyle(fontSize: 40, color: Colors.black,fontWeight: FontWeight.bold),),
-                      const SizedBox(height: 20),
-                      Form(
-                      key: _formKey,
-                      child: Column(
-                          children: <Widget>[
-                      TextFormField(
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      hintText: 'Enter Email'
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "* Required";
-                    } else if (!value.isEmail) {
-                      return "Check your email";
-                    } else
-                      return null;
-                  },
-                ),
-                const SizedBox(height: 20,),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                     labelText: 'Password',
-                       hintText: 'Enter secure password'),
-                   obscureText: true,
-                       validator: (value) {
-                          if (value!.isEmpty) {
-                              return "* Required";
-                         } else if (value.length < 6) {
-                               return "Password should be atleast 6 characters";
-                       } else if (value.length > 15) {
-                     return "Password should not be greater than 15 characters";}
-                          else return null;},
-                  ),
-                      const SizedBox(height: 22,),
-                ElevatedButton(
-                  onPressed: () {
-      if (_formKey.currentState!.validate()) {
-                    Get.to(BottomNavigationBarView());}
-                  }, child: Text('Login '),
-                   )
+                      const Text("You Don't have an account? "),
+                      SizedBox(width: 5),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => RegistrationView());
+                        },
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.deepPurple,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ],
-               ),
                   ),
-                      Row(
+                  SizedBox(height: 20),
+                  Obx(
+                        () => Visibility(
+                      visible: controller.isAdmin.value,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text("Didn't  have an account ?",style: TextStyle(height: 10.0),),
-                          GestureDetector(
-                            onTap: () {
-                              //Get.toNamed('/signup');
-                            //  Get.to(RegistrationView());
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              // Logique pour accepter l'utilisateur
                             },
-                            child: Text(" Sign up", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18,
-                              ),
-                            ),
-                          )
+                            child: Text('Accepter'),
+                          ),
+                          SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Logique pour rejeter l'utilisateur
+                            },
+                            child: Text('Rejeter'),
+                          ),
                         ],
                       ),
-
-                    ],
+                    ),
                   ),
-                ),),
-          ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
-}
 
+  MaterialStateProperty<Color> getColor(Color color, Color colorPressed) {
+    final getColor = (Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed)) {
+        return colorPressed;
+      } else {
+        return color;
+      }
+    };
+    return MaterialStateProperty.resolveWith(getColor);
+  }
+}
