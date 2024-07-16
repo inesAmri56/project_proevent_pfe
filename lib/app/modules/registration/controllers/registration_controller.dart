@@ -73,26 +73,7 @@ class RegistrationController extends GetxController {
     }
   }
 
-  Future<void> login(String email, String password) async {
-    isLoading.value = true;
-    try {
-      await _authService.login(email, password);
-      // Navigate to the next view after successful login
-      // Replace `NextView` with the desired view to navigate to after login
-      // Get.to();
-    } catch (e) {
-      // Handle login errors
-      print('Failed to login: $e');
-      // Show an error message to the user
-      Get.snackbar(
-        'Failed to Login',
-        'An error occurred while logging in. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    } finally {
-      isLoading.value = false;
-    }
-  }
+
   @override
   void onInit() {
     super.onInit();

@@ -1,10 +1,25 @@
+import 'package:flutter/foundation.dart';
+
+enum UserStatus {
+  PENDING,
+  APPROVED,
+  REJECTED,
+}
+
 class User {
-  final int? id; // Id peut être nul car il est généré par la base de données
+  final int? id;
   final String email;
   final String password;
-  final String username; // Ajoutez le champ username
+  final String username;
+  late final UserStatus status;
 
-  User({this.id, required this.email, required this.password, required this.username});
+  User({
+    this.id,
+    required this.email,
+    required this.password,
+    required this.username,
+
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -12,6 +27,7 @@ class User {
       email: json['email'],
       password: json['password'],
       username: json['username'],
+
     );
   }
 
@@ -21,6 +37,7 @@ class User {
       'email': email,
       'password': password,
       'username': username,
+
     };
   }
 }

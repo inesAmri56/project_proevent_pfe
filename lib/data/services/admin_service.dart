@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 class AdminService {
   Future<bool> isAdmin(String email, String password) async {
     final response = await http.post(
-      Uri.parse('10.0.2.2:8080'), // Remplacez YOUR_API_URL par votre URL d'API
+      Uri.parse('192.168.175.42:8080'), // Remplacez YOUR_API_URL par votre URL d'API
       body: {'email': email, 'password': password},
     );
 

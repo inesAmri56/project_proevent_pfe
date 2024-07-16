@@ -4,8 +4,8 @@ import '../models/user.dart';
 
 class AuthService {
   Future<User> signUp(User user) async {
-    final String baseUrl = 'http://100.80.133.84:8080/users';
-    final response = await http.post(
+    final String baseUrl = 'http://192.168.84.42:8080/users';
+    var  response = await http.post(
       Uri.parse('$baseUrl/signup'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -24,9 +24,9 @@ class AuthService {
   }
 
   Future<User> login(String email, String password) async {
-    final String baseUrl = 'http://100.80.133.84:8080/users';
+    final String baseUrl = 'http://192.168.84.42:8080/users';
     final response = await http.post(
-      Uri.parse('$baseUrl/login'),
+      Uri.parse('$baseUrl/login?email&password'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -41,4 +41,5 @@ class AuthService {
       throw Exception('Failed to login');
     }
   }
+
 }

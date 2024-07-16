@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1051954302853",
+    "project_id": "proevent-a5dd2",
+    "storage_bucket": "proevent-a5dd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051954302853:android:93c6c7babef5478d98feec",
+        "android_client_info": {
+          "package_name": "com.example.proevent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc-s7iH1GCa6E_zIlgPT4C06ODkGoDtYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

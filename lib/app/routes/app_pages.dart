@@ -18,8 +18,12 @@ import '../modules/SendFeedback/bindings/send_feedback_binding.dart';
 import '../modules/SendFeedback/views/send_feedback_view.dart';
 import '../modules/SplashScreen/bindings/splash_screen_binding.dart';
 import '../modules/SplashScreen/views/splash_screen_view.dart';
+import '../modules/dashboard/bindings/dashboard_binding.dart';
+import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/events/bindings/events_binding.dart';
 import '../modules/events/views/events_view.dart';
+import '../modules/home2/bindings/home2_binding.dart';
+import '../modules/home2/views/home2_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/pendingAccounts/bindings/pending_accounts_binding.dart';
@@ -34,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.PENDING_ACCOUNTS;
+  static const INITIAL = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -74,7 +78,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.NOTIFICATION,
-      page: () => const NotificationView(),
+      page: () => NotificationView(),
       binding: NotificationBinding(),
     ),
     GetPage(
@@ -106,6 +110,16 @@ class AppPages {
       name: _Paths.PENDING_ACCOUNTS,
       page: () => PendingAccountsView(),
       binding: PendingAccountsBinding(),
+    ),
+    // GetPage(
+    //   name: _Paths.DASHBOARD,
+    //   page: () => const MainScreen(),
+    //   binding: DashboardBinding(),
+    // ),
+    GetPage(
+      name: _Paths.HOME2,
+      page: () =>  Home2View(),
+      binding: Home2Binding(),
     ),
   ];
 }

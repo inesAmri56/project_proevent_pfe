@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:proevent/app/modules/Home/views/home_view.dart';
 
 import '../../../../component/authtextfromfield.dart';
 import '../../BottomNavigationBar/views/bottom_navigation_bar_view.dart';
@@ -12,6 +13,7 @@ class LoginView extends GetView<LoginController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +104,10 @@ class LoginView extends GetView<LoginController> {
                       getColor(Colors.white, Colors.deepPurple),
                     ),
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Get.to(BottomNavigationBarView());
-                      }
+                      // if (_formKey.currentState!.validate()) {
+                      //   controller.login();
+                      Get.off(HomeView());
+                      // }
                     },
                     child: const Text(
                       'Login',
